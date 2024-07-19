@@ -2,6 +2,7 @@
 database.
 
 IN THE CLI IN THE BASE DIRECTORY, DO THE FOLLOWING : 
+
 2. run the command: "php artisan migrate"
 
 3. run the command: "php artisan make:filament-user", 
