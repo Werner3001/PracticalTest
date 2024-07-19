@@ -20,8 +20,13 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function commentPost()
+    public function post()
     {
-        return $this->hasOne(Post::class);
+        return $this->belongsTo(Post::class);
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->hasRole(["Admin"]);
     }
 }

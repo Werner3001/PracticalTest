@@ -37,6 +37,7 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make(name:"title"),
                 Tables\Columns\TextColumn::make(name:"content"),
                 Tables\Columns\TextColumn::make(name:"created_at"),
+                Tables\Columns\TextColumn::make(name:"user.name"),
             ])
             ->defaultSort(column:'id',direction:'desc')
             ->filters([

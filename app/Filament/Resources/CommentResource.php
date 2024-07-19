@@ -23,7 +23,6 @@ class CommentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make(name:"title")->required()->columnSpanFull(),
                 Forms\Components\RichEditor::make(name:"content")->required()->columnSpanFull(),
             ]);
     }
@@ -33,8 +32,9 @@ class CommentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make(name:"id")->sortable(),
-                Tables\Columns\TextColumn::make(name:"user_id"),
-                Tables\Columns\TextColumn::make(name:"post_id"),
+                Tables\Columns\TextColumn::make(name:"post.title"),
+                Tables\Columns\TextColumn::make(name:"user.name"),
+                Tables\Columns\TextColumn::make(name:"created_at"),
             ])
             ->filters([
                 //

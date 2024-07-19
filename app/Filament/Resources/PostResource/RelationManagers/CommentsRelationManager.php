@@ -18,10 +18,6 @@ class CommentsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
                 Forms\Components\RichEditor::make('content')
                     ->required()
                     ->maxLength(255)
@@ -34,14 +30,17 @@ class CommentsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('title')
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('content'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                ->mutateFormDataUsing(function (array $data): array {
+                    $data['user_id'] = auth()->id();
+                    return $data;
+                }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -53,4 +52,5 @@ class CommentsRelationManager extends RelationManager
                 ]),
             ]);
     }
+    
 }
