@@ -34,8 +34,8 @@ class UsersResource extends Resource implements HasShieldPermissions
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make(name:"name"),
-                Tables\Columns\TextColumn::make(name:"email"),
+                Tables\Columns\TextColumn::make(name:"name")->searchable(),
+                Tables\Columns\TextColumn::make(name:"email")->searchable(),
             ])
             ->filters([
                 //

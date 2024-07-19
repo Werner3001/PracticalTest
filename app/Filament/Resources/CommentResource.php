@@ -33,8 +33,8 @@ class CommentResource extends Resource implements HasShieldPermissions
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make(name:"id")->sortable(),
-                Tables\Columns\TextColumn::make(name:"post.title"),
-                Tables\Columns\TextColumn::make(name:"user.name"),
+                Tables\Columns\TextColumn::make(name:"post.title")->searchable(),
+                Tables\Columns\TextColumn::make(name:"user.name")->sortable()->searchable(),
                 Tables\Columns\TextColumn::make(name:"created_at"),
             ])
             ->filters([

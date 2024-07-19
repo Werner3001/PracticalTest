@@ -35,10 +35,10 @@ class PostResource extends Resource implements HasShieldPermissions
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make(name:"id")->sortable(),
-                Tables\Columns\TextColumn::make(name:"title"),
+                Tables\Columns\TextColumn::make(name:"title")->searchable(),
                 Tables\Columns\TextColumn::make(name:"content"),
                 Tables\Columns\TextColumn::make(name:"created_at"),
-                Tables\Columns\TextColumn::make(name:"user.name"),
+                Tables\Columns\TextColumn::make(name:"user.name")->searchable(),
             ])
             ->defaultSort(column:'id',direction:'desc')
             ->filters([
