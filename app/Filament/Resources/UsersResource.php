@@ -13,8 +13,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 
-class UsersResource extends Resource
+class UsersResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = User::class;
 
@@ -62,6 +63,19 @@ class UsersResource extends Resource
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUsers::route('/create'),
             'edit' => Pages\EditUsers::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view',
+            'view_any',
+            'create',
+            'update',
+            'delete',
+            'delete_any',
+            'publish'
         ];
     }
 }

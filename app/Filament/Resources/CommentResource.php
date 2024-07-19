@@ -12,8 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 
-class CommentResource extends Resource
+class CommentResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Comment::class;
 
@@ -62,6 +63,19 @@ class CommentResource extends Resource
             'index' => Pages\ListComments::route('/'),
             'create' => Pages\CreateComment::route('/create'),
             'edit' => Pages\EditComment::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view',
+            'view_any',
+            'create',
+            'update',
+            'delete',
+            'delete_any',
+            'publish'
         ];
     }
 }
